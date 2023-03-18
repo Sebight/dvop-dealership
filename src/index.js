@@ -6,7 +6,9 @@ const router = require('./routes/router');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+app.use(express.json());
 app.use('/api/v1', router);
+
 
 app.listen(port, async () => {
     console.log("[Dealership] Starting server...");
@@ -18,8 +20,6 @@ app.listen(port, async () => {
         process.exit(1);
     }
     console.log(`[Dealership] Server listening at http://localhost:${port}`);
-    const allCars = await prisma.car.findMany();
-    console.log(allCars);
 });
 
 async function connect() {
