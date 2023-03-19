@@ -20,5 +20,6 @@ router.get('/car', carController.getCars)
 router.get('/car/:id', carController.getCar)
 router.post('/car', carController.postCar)
 router.put('/car/:id', carController.putCar)
+router.delete('/car/:id', carController.deleteCar)
 
 module.exports = router;

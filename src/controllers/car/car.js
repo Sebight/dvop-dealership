@@ -60,9 +60,20 @@ function putCar(req, res) {
     });
 }
 
+function deleteCar(req, res) {
+    prisma.car.delete({
+        where: {
+            id: parseInt(req.params.id)
+        }
+    }).then((car) => {
+        res.send(car);
+    });
+}
+
 module.exports = {
     getCars,
     getCar,
     postCar,
-    putCar
+    putCar,
+    deleteCar
 }
