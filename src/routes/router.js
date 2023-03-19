@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const exampleController = require('../controllers/example/example');
 const carController = require('../controllers/car/car');
+const developerController = require('../controllers/developer/developer');
+
 const tokenMiddleware = require('../middlewares/token');
 
 router.use(async (req, res, next) => {
@@ -16,10 +17,17 @@ router.use(async (req, res, next) => {
 router.get('/', (req, res) => res.status(404).send('404'));
 
 // Car
-router.get('/car', carController.getCars)
-router.get('/car/:id', carController.getCar)
-router.post('/car', carController.postCar)
-router.put('/car/:id', carController.putCar)
-router.delete('/car/:id', carController.deleteCar)
+router.get('/car', carController.getCars);
+router.post('/car', carController.postCar);
+router.get('/car/:id', carController.getCar);
+router.put('/car/:id', carController.putCar);
+router.delete('/car/:id', carController.deleteCar);
+
+// Developer
+router.get('/developer', developerController.getDevelopers);
+router.post('/developer', developerController.postDeveloper);
+router.get('/developer/:token', developerController.getDeveloper);
+router.put('/developer/:token', developerController.putDeveloper);
+router.delete('/developer/:token', developerController.deleteDeveloper);
 
 module.exports = router;

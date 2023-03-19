@@ -18,6 +18,8 @@
   "homepage": "https://github.com/Sebight/dvop-dealership#readme",
   "dependencies": {
     "@prisma/client": "^4.11.0",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "nodemon": "^2.0.21",
     "prisma": "^4.11.0"
