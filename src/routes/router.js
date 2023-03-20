@@ -4,6 +4,7 @@ const router = express.Router();
 const carController = require('../controllers/car/car');
 const developerController = require('../controllers/developer/developer');
 const orderController = require('../controllers/order/order');
+const customerController = require('../controllers/customer/customer');
 
 const tokenMiddleware = require('../middlewares/token');
 
@@ -37,5 +38,12 @@ router.post('/order', orderController.postOrder);
 router.get('/order/:id', orderController.getOrder);
 router.put('/order/:id', orderController.putOrder);
 router.delete('/order/:id', orderController.deleteOrder);
+
+// Customer
+router.get('/customer', customerController.getCustomers);
+router.post('/customer', customerController.postCustomer);
+router.get('/customer/:id', customerController.getCustomer);
+router.put('/customer/:id', customerController.putCustomer);
+router.delete('/customer/:id', customerController.deleteCustomer);
 
 module.exports = router;
