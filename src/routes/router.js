@@ -3,6 +3,7 @@ const router = express.Router();
 
 const carController = require('../controllers/car/car');
 const developerController = require('../controllers/developer/developer');
+const orderController = require('../controllers/order/order');
 
 const tokenMiddleware = require('../middlewares/token');
 
@@ -29,5 +30,12 @@ router.post('/developer', developerController.postDeveloper);
 router.get('/developer/:token', developerController.getDeveloper);
 router.put('/developer/:token', developerController.putDeveloper);
 router.delete('/developer/:token', developerController.deleteDeveloper);
+
+// Order
+router.get('/order', orderController.getOrders);
+router.post('/order', orderController.postOrder);
+router.get('/order/:id', orderController.getOrder);
+router.put('/order/:id', orderController.putOrder);
+router.delete('/order/:id', orderController.deleteOrder);
 
 module.exports = router;
