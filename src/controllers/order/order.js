@@ -24,7 +24,6 @@ function getOrder(req, res) {
 function postOrder(req, res) {
 	prisma.order.create({
 		data: {
-			id: req.body.id,
 			customer_id: req.body.customer_id
 		}
 	}).then((order) => {
@@ -38,7 +37,6 @@ function putOrder(req, res) {
 			id: parseInt(req.params.id)
 		},
 		data: {
-			id: req.body.id,
 			customer_id: req.body.customer_id
 		}
 	}).then((order) => {
