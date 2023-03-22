@@ -1,6 +1,7 @@
 const {PrismaClient} = require('@prisma/client');
 const prisma = new PrismaClient();
 const crypto = require('crypto');
+const joi = require('joi');
 
 function getDevelopers(req, res) {
     prisma.developer.findMany().then((developers) => {
@@ -9,6 +10,16 @@ function getDevelopers(req, res) {
 }
 
 function getDeveloper(req, res) {
+    const schema = joi.object({
+        token: joi.string().required()
+    });
+
+    const {error, value} = schema.validate(req.params);
+    if (error) {
+        res.status(400).send('400');
+        return;
+    }
+
     prisma.developer.findUnique({
         where: {
             token: req.params.token
@@ -23,6 +34,18 @@ function getDeveloper(req, res) {
 }
 
 function postDeveloper(req, res) {
+    const schema = joi.object({
+        name: joi.string().required(),
+        email: joi.string().email().required()
+
+    });
+
+    const {error, value} = schema.validate(req.body);
+    if (error) {
+        res.status(400).send('400');
+        return;
+    }
+
     const uuid = crypto.randomUUID();
 
     if (req.body.name === undefined || req.body.email === undefined) {
@@ -42,6 +65,17 @@ function postDeveloper(req, res) {
 }
 
 function putDeveloper(req, res) {
+    const schema = joi.object({
+        name: joi.string().required(),
+        email: joi.string().email().required()
+    });
+
+    const {error, value} = schema.validate(req.body);
+    if (error) {
+        res.status(400).send('400');
+        return;
+    }
+
     prisma.developer.update({
         where: {
             token: req.params.token
@@ -56,7 +90,16 @@ function putDeveloper(req, res) {
 }
 
 function deleteDeveloper(req, res) {
-    // check if developer exists
+    const schema = joi.object({
+        token: joi.string().required()
+    });
+
+    const {error, value} = schema.validate(req.params);
+    if (error) {
+        res.status(400).send('400');
+        return;
+    }
+
     let developerExists = false;
     prisma.developer.findUnique({
         where: {
