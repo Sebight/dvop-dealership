@@ -36,7 +36,8 @@ model order {
 }
 
 model developer {
-  token String @id @db.Uuid
-  email String
-  name  String
+  token         String @id @db.Uuid
+  priorityGroup String @default("public")
+  email         String
+  name          String
 }

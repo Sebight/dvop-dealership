@@ -18,6 +18,19 @@ async function isTokenValid(token) {
     return foundToken !== null;
 }
 
+async function getTokenData(token) {
+    if (token === undefined || !isUUID(token)) {
+        return null;
+    }
+    const foundToken = await prisma.developer.findUnique({
+        where: {
+            token: token
+        }
+    });
+    return foundToken;
+}
+
 module.exports = {
-    isTokenValid
+    isTokenValid,
+    getTokenData
 }
