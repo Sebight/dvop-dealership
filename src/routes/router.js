@@ -220,6 +220,7 @@ router.delete('/car/:id', carController.deleteCar);
  *               name: "John Doe"
  *               email: "example@gmail.com"
  *               token: "1234567890"
+ *               priorityGroup: "public"
  */
 router.get('/developer', developerController.getDevelopers);
 /**
@@ -238,6 +239,7 @@ router.get('/developer', developerController.getDevelopers);
  *               name: "John Doe"
  *               email: "example@gmail.com"
  *               token: "1234567890"
+ *               priorityGroup: "public"
  *     responses:
  *       201:
  *         description: Created developer object
@@ -247,6 +249,7 @@ router.get('/developer', developerController.getDevelopers);
  *               name: "John Doe"
  *               email: "example@gmail.com"
  *               token: "1234567890"
+ 				 priorityGroup: "public"
  *       400:
  *         description: Bad request
  */
@@ -274,6 +277,7 @@ router.post('/developer', developerController.postDeveloper);
  *               name: "John Doe"
  *               email: "example@gmail.com"
  *               token: "1234567890"
+ *               priorityGroup: "public"
  *       404:
  *         description: Developer not found
  */
@@ -301,6 +305,7 @@ router.get('/developer/:token', developerController.getDeveloper);
  *               name: "John Doe"
  *               email: "example@gmail.com"
  *               token: "1234567890"
+ *               priorityGroup: "public"
  *     responses:
  *       200:
  *         description: Updated developer object
@@ -310,6 +315,7 @@ router.get('/developer/:token', developerController.getDeveloper);
  *               name: "John Doe"
  *               email: "example@gmail.com"
  *               token: "1234567890"
+ *               priorityGroup: "public"
  *       400:
  *         description: Bad request
  *       404:
