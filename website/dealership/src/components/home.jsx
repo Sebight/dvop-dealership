@@ -1,30 +1,41 @@
-import {Box, Button, Input, Typography} from "@mui/joy";
-import React, {useState} from 'react';
+import {Box, Button, extendTheme, Grid, Input, Sheet, Stack, styled, Table, Typography} from "@mui/joy";
+import {CssVarsProvider} from '@mui/joy/styles';
+import React, {useEffect, useState} from 'react';
+import Card from "./card";
+import CardButton from "./card";
 
 export default function Home() {
-	const[name, setName] = useState('John Doe');
+    const [cars, setCars] = useState([]);
 
-	return (
-		<Box display={'flex'} gap={'10px'}>
-			<Typography level={'h1'}>
-				My name is {name}
-			</Typography>
-			<Input
-				placeholder={'Enter your name'}
-				value={name}
-				onChange={(event) => {
-					setName(event.target.value);
-				}}
-			></Input>
-			<Button
-				variant={'solid'}
-				color={'primary'}
-				onClick={() => {
-					console.log('Hello world!')
-				}}
-			>
-				Click me!
-			</Button>
-		</Box>
-	);
+    useEffect(() => {
+        fetch('http://localhost:1234/api/v1/car', {
+            headers: {
+                token: '35936648-bd9b-4195-ac10-bc57596791b0'
+            }
+        }).then((response) => {
+            return response.json();
+        }).then((data) => {
+            setCars(data);
+            console.log(data);
+        });
+    }, [])
+
+    const Item = styled(Sheet)(({theme}) => ({
+        ...theme.typography.body2,
+        padding: theme.spacing(1),
+        textAlign: 'center',
+        color: theme.vars.palette.text.tertiary,
+    }));
+
+    return (
+        <Grid justifyContent="center" alignItems="center">
+            {cars.map((car) => {
+                return (
+                    <Item>
+                        <CardButton car={car} key={car.id}/>
+                    </Item>
+                )
+            })}
+        </Grid>
+    );
 }

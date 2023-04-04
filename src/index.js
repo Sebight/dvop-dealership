@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
@@ -27,6 +28,12 @@ const router = require('./routes/router');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/api/v1', router);
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
