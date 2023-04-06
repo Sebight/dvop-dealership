@@ -5,6 +5,8 @@ import React from 'react';
 import {extendTheme} from "@mui/joy";
 import '@fontsource/public-sans/400.css'
 
+import '@fontsource/public-sans/300.css';
+
 export default function App() {
   return (
     <CssVarsProvider>

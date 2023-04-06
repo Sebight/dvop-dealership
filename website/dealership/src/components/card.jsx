@@ -1,13 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {AspectRatio, Card, Chip, Link, Typography} from "@mui/joy";
+import Popup from "./popup.jsx";
 
 const formatNumber = (number) => {
     return new Intl.NumberFormat('cs-CZ', {style: 'currency', currency: 'CZK'}).format(number);
 }
 
 export default function CardButton(props) {
+    const [carPopupShown, setCarPopupShown] = useState(false);
+
+    function handleClickCarCard() {
+        setCarPopupShown(true);
+    }
+
+    function handlePopupClosed() {
+        setCarPopupShown(false);
+    }
+
     return (
         <Card
+            onClick={handleClickCarCard}
             variant="outlined"
             orientation="horizontal"
             sx={{
@@ -47,6 +59,7 @@ export default function CardButton(props) {
                     {formatNumber(props.car.price)}
                 </Chip>
             </div>
+            <Popup open={carPopupShown} onClosed={handlePopupClosed} props={props.car}/>
         </Card>
     );
 }
