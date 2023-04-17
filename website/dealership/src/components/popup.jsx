@@ -1,11 +1,9 @@
-import {Modal, ModalClose, Typography, Sheet, AspectRatio, Box} from "@mui/joy";
+import {Modal, ModalClose, Typography, Sheet, AspectRatio, Box, Button} from "@mui/joy";
 import React, {useEffect, useState} from 'react';
 import {formatPrice} from "../tools/formatPrice";
 
-export default function Popup({
-                                  open = true, onClosed = () => {
-    }, props = {}
-                              }) {
+export default function Popup({open = true, onClosed = () => {
+    }, props = {}}) {
     const [show, setShown] = useState(!!open);
     useEffect(() => {
         setShown(!!open);
@@ -21,7 +19,6 @@ export default function Popup({
             open={show}
             onClose={onModalClosed}
             keepMounted={true}
-            //center to mid
             sx={{
                 display: 'flex',
                 alignItems: 'center',
@@ -43,17 +40,24 @@ export default function Popup({
                         srcSet={props.image}
                         loading="lazy"
                         alt=""
+                        style={{
+                            borderRadius: "0.3rem",
+                        }}
                     />
                 </AspectRatio>
                 <Box>
-                    <Typography fontSize={"2rem"} fontWeight="md">{props.make} - {props.model}</Typography>
+                    <Typography fontSize={"2.5rem"} fontWeight="md">{props.make} {props.model}</Typography>
                     <Typography>{props.description}</Typography>
-                    <Typography>{props.year}</Typography>
-                    <Typography>{formatPrice(props.price)}</Typography>
-                    <Typography>{props.mileage != undefined ? props.mileage : "{unknown}"} km</Typography>
+                    <Typography><b>Rok výroby</b>: {props.year}</Typography>
+                    <Typography><b>Cena</b>: {formatPrice(props.price)}</Typography>
+                    <Typography><b>Stav
+                        tachometru</b>: {props.mileage != undefined ? props.mileage : "{unknown}"} km</Typography>
                     <Typography fontWeight="md" textColor="success.plainColor" mb={0.5}>
-                        {props.vin}
+                        <b>VIN</b>: {props.vin}
                     </Typography>
+                    <Button onClick={() => {
+                        window.location.href = "/buy/" + props.id;
+                    }}>Koupit</Button>
                 </Box>
             </Sheet>
         </Modal>
