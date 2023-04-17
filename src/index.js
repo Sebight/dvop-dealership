@@ -7,7 +7,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDefinition = {
     openapi: '3.0.0',
     info: {
-        title: 'Express API for JSONPlaceholder',
+        title: 'Dealership API',
         version: '1.0.0',
     },
 };
@@ -22,7 +22,7 @@ const swaggerSpec = swaggerJSDoc(options);
 
 const dotenv = require('dotenv');
 dotenv.config({ path: '../.env' });
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 1234;
 
 const router = require('./routes/router');
 const { PrismaClient } = require('@prisma/client');

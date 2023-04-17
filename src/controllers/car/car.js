@@ -21,7 +21,7 @@ function getCar(req, res) {
 
     prisma.car.findUnique({
         where: {
-            id: parseInt(req.params.id)
+            id: parseInt(value.id)
         }
     }).then((car) => {
         if (!car) {
@@ -53,15 +53,15 @@ function postCar(req, res) {
 
     prisma.car.create({
         data: {
-            make: req.body.make,
-            model: req.body.model,
-            year: req.body.year,
-            color: req.body.color,
-            vin: req.body.vin,
-            mileage: req.body.mileage,
-            price: req.body.price,
-            description: req.body.description,
-            image: req.body.image
+            make: value.make,
+            model: value.model,
+            year: value.year,
+            color: value.color,
+            vin: value.vin,
+            mileage: value.mileage,
+            price: value.price,
+            description: value.description,
+            image: value.image
         }
     }).then((car) => {
         res.send(car);
@@ -92,15 +92,15 @@ function putCar(req, res) {
             id: parseInt(req.params.id)
         },
         data: {
-            make: req.body.make,
-            model: req.body.model,
-            year: req.body.year,
-            color: req.body.color,
-            vin: req.body.vin,
-            mileage: req.body.mileage,
-            price: req.body.price,
-            description: req.body.description,
-            image: req.body.image
+            make: value.make,
+            model: value.model,
+            year: value.year,
+            color: value.color,
+            vin: value.vin,
+            mileage: value.mileage,
+            price: value.price,
+            description: value.description,
+            image: value.image
         }
     }).then((car) => {
         res.send(car);
@@ -120,7 +120,7 @@ function deleteCar(req, res) {
 
     prisma.car.delete({
         where: {
-            id: parseInt(req.params.id)
+            id: parseInt(value.id)
         }
     }).then((car) => {
         res.send(car);

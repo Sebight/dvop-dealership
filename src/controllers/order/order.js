@@ -22,7 +22,7 @@ function getOrder(req, res) {
 
     prisma.order.findUnique({
         where: {
-            id: parseInt(req.params.id)
+            id: parseInt(value.id)
         }
     }).then((order) => {
         if (!order) {
@@ -47,7 +47,7 @@ function postOrder(req, res) {
 
     prisma.order.create({
         data: {
-            customer_id: req.body.customer_id
+            customer_id: value.customer_id
         }
     }).then((order) => {
         res.send(order);
@@ -70,7 +70,7 @@ function putOrder(req, res) {
             id: parseInt(req.params.id)
         },
         data: {
-            customer_id: req.body.customer_id
+            customer_id: value.customer_id
         }
     }).then((order) => {
         res.send(order);
@@ -91,7 +91,7 @@ function deleteOrder(req, res) {
     
     prisma.order.delete({
         where: {
-            id: parseInt(req.params.id)
+            id: parseInt(value.id)
         }
     }).then((order) => {
         res.send(order);

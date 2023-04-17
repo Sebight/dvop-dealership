@@ -22,7 +22,7 @@ function getCustomer(req, res) {
 
     prisma.customer.findUnique({
         where: {
-            id: parseInt(req.params.id)
+            id: parseInt(value.id)
         }
     }).then((customer) => {
         if (!customer) {
@@ -46,8 +46,8 @@ function postCustomer(req, res) {
     }
     prisma.customer.create({
         data: {
-            name: req.body.name,
-            email: req.body.email
+            name: value.name,
+            email: value.email
         }
     }).then((customer) => {
         res.send(customer);
@@ -71,8 +71,8 @@ function putCustomer(req, res) {
             id: parseInt(req.params.id)
         },
         data: {
-            name: req.body.name,
-            email: req.body.email
+            name: value.name,
+            email: value.email
         }
     }).then((customer) => {
         res.send(customer);
@@ -92,7 +92,7 @@ function deleteCustomer(req, res) {
 
     prisma.customer.delete({
         where: {
-            id: parseInt(req.params.id)
+            id: parseInt(value.id)
         }
     }).then((customer) => {
         res.send(customer);

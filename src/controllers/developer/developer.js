@@ -22,7 +22,7 @@ function getDeveloper(req, res) {
 
     prisma.developer.findUnique({
         where: {
-            token: req.params.token
+            token: value.token
         }
     }).then((developer) => {
         if (!developer) {
@@ -55,8 +55,8 @@ function postDeveloper(req, res) {
 
     prisma.developer.create({
         data: {
-            name: req.body.name,
-            email: req.body.email,
+            name: value.name,
+            email: value.email,
             token: uuid
         }
     }).then((developer) => {
@@ -81,8 +81,8 @@ function putDeveloper(req, res) {
             token: req.params.token
         },
         data: {
-            name: req.body.name,
-            email: req.body.email
+            name: value.name,
+            email: value.email
         }
     }).then((developer) => {
         res.send(developer);
@@ -103,7 +103,7 @@ function deleteDeveloper(req, res) {
     let developerExists = false;
     prisma.developer.findUnique({
         where: {
-            token: req.params.token
+            token: value.token
         }
     }).then((developer) => {
         if (developer) {
@@ -118,7 +118,7 @@ function deleteDeveloper(req, res) {
 
     prisma.developer.delete({
         where: {
-            token: req.params.token
+            token: value.token
         }
     }).then((developer) => {
         res.send(developer);
