@@ -2,7 +2,7 @@ import {List, ListItem, Box, Button, Sheet} from '@mui/joy';
 import {Link, useLocation} from 'react-router-dom';
 import React from 'react';
 
-export default function NavButton({to, label, activeColor = '#045dc2', sx = {}, ...rest}) {
+function NavButton({to, label, activeColor = '#045dc2', sx = {}, ...rest}) {
 	const route = String(to);
 	const path = String(useLocation()?.pathname ?? '');
 	const active = path === route || (route !== '/' && path.startsWith(route));
