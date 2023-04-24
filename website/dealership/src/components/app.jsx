@@ -13,6 +13,7 @@ export default function App() {
       <Routes>
         {/*Tady jsou jednotlivé routy*/}
         <Route path="/" element={<Home />} />
+        <Route path="/offers" element={<Home />} />
       </Routes>
     </CssVarsProvider>
   );
