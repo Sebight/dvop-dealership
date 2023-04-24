@@ -6,6 +6,7 @@ import {extendTheme} from "@mui/joy";
 import '@fontsource/public-sans/400.css'
 
 import '@fontsource/public-sans/300.css';
+import Developers from "./developers";
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         {/*Tady jsou jednotlivé routy*/}
         <Route path="/" element={<Home />} />
         <Route path="/offers" element={<Home />} />
+          <Route path="/fordevelopers" element={<Developers/>} />
       </Routes>
     </CssVarsProvider>
   );
