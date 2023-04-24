@@ -2,7 +2,7 @@ import {List, ListItem, Box, Button, Sheet} from '@mui/joy';
 import {Link, useLocation} from 'react-router-dom';
 import React from 'react';
 
-function NavButton({to, label, activeColor = '#045dc2', sx = {}, ...rest}) {
+export default function NavButton({to, label, activeColor = '#045dc2', sx = {}, ...rest}) {
 	const route = String(to);
 	const path = String(useLocation()?.pathname ?? '');
 	const active = path === route || (route !== '/' && path.startsWith(route));
@@ -44,9 +44,15 @@ export default function MainLayout({children}) {
 							/>
 					</ListItem>
 					<ListItem>
+						<NavButton
+							to={'/offeracar'}
+							label='Offer a car'
+						/>
+					</ListItem>
+					<ListItem>
 							<NavButton
-								to={'/offers'}
-								label='Offers'
+								to={'/fordevelopers'}
+								label='Developers'
 							/>
 					</ListItem>
 				</List>
