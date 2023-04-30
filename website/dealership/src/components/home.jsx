@@ -2,6 +2,7 @@ import {Box} from "@mui/joy";
 import React, {useEffect, useState} from 'react';
 import CardButton from "./card.jsx";
 import MainLayout from "./main-layout.jsx";
+import {PUBLIC_TOKEN} from "../globals";
 
 
 export default function Home() {
@@ -10,7 +11,7 @@ export default function Home() {
 	useEffect(() => {
 		fetch('http://localhost:1234/api/v1/car', {
 			headers: {
-				token: '35936648-bd9b-4195-ac10-bc57596791b0'
+				token: PUBLIC_TOKEN
 			}
 		}).then((response) => {
 			return response.json();

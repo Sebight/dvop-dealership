@@ -16,6 +16,19 @@ async function hasPermission(token, action) {
     return canGroupPerform(action, data.priorityGroup);
 }
 
+function translateNumberToRole(number) {
+    switch (number) {
+        case 3:
+            return "admin";
+        case 2:
+            return "developer";
+        case 1:
+            return "public";
+        default:
+            return "public";
+    }
+}
+
 function canGroupPerform(action, group) {
     let priorityObject = {
         [Actions.NEW_CAR]: ["admin", "public", "developer"],
@@ -68,5 +81,6 @@ const Actions = {
 
 module.exports = {
     canPerform,
-    Actions
+    Actions,
+    translateNumberToRole
 }

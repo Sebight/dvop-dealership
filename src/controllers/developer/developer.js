@@ -2,6 +2,7 @@ const {PrismaClient} = require('@prisma/client');
 const prisma = new PrismaClient();
 const crypto = require('crypto');
 const joi = require('joi');
+const {translateNumberToRole} = require("../../middlewares/priority");
 
 function getDevelopers(req, res) {
     prisma.developer.findMany().then((developers) => {
@@ -36,8 +37,8 @@ function getDeveloper(req, res) {
 function postDeveloper(req, res) {
     const schema = joi.object({
         name: joi.string().required(),
-        email: joi.string().email().required()
-
+        email: joi.string().email().required(),
+        priorityGroup: joi.number().integer().min(1).max(3).required()
     });
 
     const {error, value} = schema.validate(req.body);
@@ -57,7 +58,8 @@ function postDeveloper(req, res) {
         data: {
             name: value.name,
             email: value.email,
-            token: uuid
+            token: uuid,
+            priorityGroup: translateNumberToRole(value.priorityGroup)
         }
     }).then((developer) => {
         res.send(developer);
