@@ -3,6 +3,8 @@ const prisma = new PrismaClient();
 const crypto = require('crypto');
 const joi = require('joi');
 const {translateNumberToRole} = require("../../middlewares/priority");
+const {sendEmail} = require("../../services/emailService");
+const emails = require("../../global/emails");
 
 function getDevelopers(req, res) {
     prisma.developer.findMany().then((developers) => {
@@ -62,6 +64,8 @@ function postDeveloper(req, res) {
             priorityGroup: translateNumberToRole(value.priorityGroup)
         }
     }).then((developer) => {
+        const newDevHTML = emails.NEW_DEV.replace('{API_KEY}', uuid);
+        sendEmail(value.email, "Welcome on board!", "", newDevHTML);
         res.send(developer);
     });
 }
