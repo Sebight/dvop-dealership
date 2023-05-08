@@ -42,7 +42,8 @@ function postCar(req, res) {
         mileage: joi.number().required(),
         price: joi.number().required(),
         description: joi.string().required(),
-        image: joi.string().allow(null)
+        image: joi.string().allow(null),
+        creator_id: joi.number().required()
     });
 
     const {error, value} = schema.validate(req.body);
@@ -61,7 +62,8 @@ function postCar(req, res) {
             mileage: value.mileage,
             price: value.price,
             description: value.description,
-            image: value.image
+            image: value.image,
+            creator_id: value.creator_id
         }
     }).then((car) => {
         res.send(car);
@@ -78,7 +80,8 @@ function putCar(req, res) {
         mileage: joi.number().required(),
         price: joi.number().required(),
         description: joi.string().required(),
-        image: joi.string().allow(null)
+        image: joi.string().allow(null),
+        creator_id: joi.number().required()
     });
 
     const {error, value} = schema.validate(req.body);
@@ -100,7 +103,8 @@ function putCar(req, res) {
             mileage: value.mileage,
             price: value.price,
             description: value.description,
-            image: value.image
+            image: value.image,
+            creator_id: value.creator_id
         }
     }).then((car) => {
         res.send(car);

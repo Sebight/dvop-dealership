@@ -18,6 +18,7 @@ model car {
   price       Int?
   description String?
   image       String?
+  creator_id    Int?
   // sold        Boolean?
 }
 
