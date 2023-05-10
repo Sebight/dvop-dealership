@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import CardButton from "./card.jsx";
 import MainLayout from "./main-layout.jsx";
 import {API_URL, PUBLIC_TOKEN} from "../globals";
+import {postDeveloper} from "../tools/fetcher";
 
 
 export default function Developers() {
@@ -14,24 +15,10 @@ export default function Developers() {
 
 
     function genToken() {
-        fetch(API_URL + "/developer", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'token': PUBLIC_TOKEN
-            },
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                priorityGroup: 2
-            })
-        }).then(res => res.json())
-            .then(data => {
-                if (data.token !== undefined) {
-                    setToken(data.token);
-                    setTokenReceived(true);
-                }
-            });
+        postDeveloper(name, email, (data) => {
+            setToken(data);
+            setTokenReceived(true);
+        })
     }
 
     return (

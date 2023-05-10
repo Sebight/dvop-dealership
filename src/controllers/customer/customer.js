@@ -1,6 +1,8 @@
 const {PrismaClient} = require('@prisma/client');
 const prisma = new PrismaClient();
 const joi = require('joi');
+const {sendEmail} = require("../../services/emailService");
+const emails = require("../../global/emails");
 
 
 function getCustomers(req, res) {
@@ -51,6 +53,7 @@ function postCustomer(req, res) {
         }
     }).then((customer) => {
         res.send(customer);
+        sendEmail(customer.email, 'Welcome on board', "", emails.NEW_CUSTOMER);
     });
 }
 

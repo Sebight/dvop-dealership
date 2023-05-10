@@ -3,21 +3,14 @@ import React, {useEffect, useState} from 'react';
 import CardButton from "./card.jsx";
 import MainLayout from "./main-layout.jsx";
 import {PUBLIC_TOKEN} from "../globals";
+import {getCars} from "../tools/fetcher";
 
 
 export default function Home() {
 	const [cars, setCars] = useState([]);
 
 	useEffect(() => {
-		fetch('http://localhost:1234/api/v1/car', {
-			headers: {
-				token: PUBLIC_TOKEN
-			}
-		}).then((response) => {
-			return response.json();
-		}).then((data) => {
-			setCars(data);
-		});
+		getCars(setCars);
 	}, [])
 
 	return (
