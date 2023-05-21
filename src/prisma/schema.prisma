@@ -19,7 +19,7 @@ model car {
   description String?
   image       String?
   creator_id    Int?
-  // sold        Boolean?
+  sold        Boolean @default(false)
 }
 
 model customer {
