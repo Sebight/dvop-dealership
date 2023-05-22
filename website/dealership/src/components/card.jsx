@@ -3,8 +3,6 @@ import {AspectRatio, Card, Chip, Link, Typography} from "@mui/joy";
 import Popup from "./popup.jsx";
 import {formatPrice} from "../tools/formatPrice";
 
-
-
 export default function CardButton(props) {
     const [carPopupShown, setCarPopupShown] = useState(false);
 

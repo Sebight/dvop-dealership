@@ -1,10 +1,10 @@
 import {API_URL, PUBLIC_TOKEN} from "../globals";
 import {readLocalStorage} from "./readLocalStorage";
 
-export function postCar(car) {
+export function sendCar(car, method) {
     const user_id = readLocalStorage("user_id");
-    fetch(API_URL + "/car", {
-        method: 'POST',
+    fetch(API_URL + "/car" + (method === 'PUT' ? '/' + car.id : ''), {
+        method: method,
         headers: {
             'Content-Type': 'application/json',
             'token': PUBLIC_TOKEN
@@ -19,7 +19,8 @@ export function postCar(car) {
             price: car.price,
             vin: car.vin,
             year: car.year,
-            creator_id: user_id
+            creator_id: user_id,
+            sold: car.sold
         })
     }).then((response) => {
         return response.json();
@@ -52,6 +53,18 @@ export function createCustomer(email, name) {
 
 export function getCars(callback) {
     fetch(API_URL + '/car', {
+        headers: {
+            token: PUBLIC_TOKEN
+        }
+    }).then((response) => {
+        return response.json();
+    }).then((data) => {
+        callback(data);
+    });
+}
+
+export function getCar(id, callback) {
+    fetch(API_URL + '/car/' + id, {
         headers: {
             token: PUBLIC_TOKEN
         }

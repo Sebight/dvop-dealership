@@ -8,15 +8,16 @@ import React, {useState} from 'react';
 import '@fontsource/public-sans/400.css'
 import '@fontsource/public-sans/300.css';
 import Developers from "./developers";
-import {API_URL, PUBLIC_TOKEN} from "../globals";
-import {readLocalStorage} from "../tools/readLocalStorage";
-import {postCar} from "../tools/fetcher";
+import {readLocalStorage} from '../tools/readLocalStorage';
+import {sendCar} from "../tools/fetcher";
+import CarBuy from './car-buy.jsx';
 
 export default function App() {
 	const [user_id, setUser_id] = useState(readLocalStorage('user_id'));
+	const [cars, setCars] = useState([]);
 
 	const handleSubmit = (car) => {
-		postCar(car);
+		sendCar(car);
 	};
 
 	return (
@@ -25,7 +26,8 @@ export default function App() {
 				<Route path="/" element={<Home/>}/>
 				<Route path="/offers" element={<Home/>}/>
 				<Route path="/fordevelopers" element={<Developers/>}/>
-				<Route path="/offeracar" element={user_id ? <CarForm onSubmit={handleSubmit}/> : <CustomerForm />}/>
+				<Route path="/offeracar" element={user_id ? <CarForm onSubmit={handleSubmit}/> : <CustomerForm/>}/>
+				<Route path="/buy/:id" element={user_id ? <CarBuy cars={cars}/> : <CustomerForm/>}/>
 				<Route path='*' element={<NotFound/>}/>
 			</Routes>
 		</CssVarsProvider>

@@ -1,10 +1,8 @@
-import {Box} from "@mui/joy";
+import {Box} from '@mui/joy';
 import React, {useEffect, useState} from 'react';
-import CardButton from "./card.jsx";
-import MainLayout from "./main-layout.jsx";
-import {PUBLIC_TOKEN} from "../globals";
-import {getCars} from "../tools/fetcher";
-
+import CardButton from './card.jsx';
+import MainLayout from './main-layout.jsx';
+import {getCars} from '../tools/fetcher.js';
 
 export default function Home() {
     const [cars, setCars] = useState([]);
