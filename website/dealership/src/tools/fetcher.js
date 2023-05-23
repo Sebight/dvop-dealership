@@ -19,7 +19,7 @@ export function sendCar(car, method) {
             price: car.price,
             vin: car.vin,
             year: car.year,
-            creator_id: user_id,
+            creator_id: car.creator_id,
             sold: car.sold,
             invoker_id: readLocalStorage("user_id")
         })
