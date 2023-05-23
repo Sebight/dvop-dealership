@@ -120,22 +120,17 @@ async function putCar(req, res) {
     }).then((car) => {
         res.send(car);
     });
-    console.log(value.creator_id);
-    console.log(value.invoker_id);
     if ((value.creator_id !== value.invoker_id) && value.sold === true) {
-        console.log("Buy action happened");
         const buyer_email = await prisma.customer.findUnique({
             where: {
                 id: value.invoker_id
             }
         });
-        console.log("Notifying buyer: " + buyer_email.email);
         const seller_email = await prisma.customer.findUnique({
             where: {
                 id: value.creator_id
             }
         });
-        console.log("Notifying seller: " + seller_email.email);
         sendEmail(buyer_email.email, "Thank you for your purchase", "", emails.NEW_ORDER)
         sendEmail(seller_email.email, "Someone bought your car", "", emails.NEW_SELL)
     }
