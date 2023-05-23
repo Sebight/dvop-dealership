@@ -47,7 +47,8 @@ function postCar(req, res) {
         description: joi.string().required(),
         image: joi.string().allow(null),
         creator_id: joi.number().required(),
-        sold: joi.boolean().required()
+        sold: joi.boolean().required(),
+        invoker_id: joi.number()
     });
 
     const {error, value} = schema.validate(req.body);
