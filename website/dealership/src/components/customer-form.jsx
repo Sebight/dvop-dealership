@@ -19,14 +19,14 @@ export default function Developers() {
                     flexWrap: 'wrap',
                 }}
             >
-              <Typography variant="h1">Customer register</Typography>
-              <form onSubmit={() => createCustomer(email, name)}>
+                <Typography variant="h1">Customer register</Typography>
                 <FormLabel>Email</FormLabel>
-                <Input sx={{margin: '5px'}} required placeholder="e-mail" variant="soft" onChange={(e) => setEmail(e.target.value)}/>
+                <Input sx={{margin: '5px'}} required placeholder="e-mail" variant="soft"
+                       onChange={(e) => setEmail(e.target.value)}/>
                 <FormLabel>Name</FormLabel>
-                <Input sx={{margin: '5px'}} required placeholder="name" variant="soft" onChange={(e) => setName(e.target.value)}/>
-                <Button type='submit'>Register</Button>
-              </form>
+                <Input sx={{margin: '5px'}} required placeholder="name" variant="soft"
+                       onChange={(e) => setName(e.target.value)}/>
+                <Button type='submit' onClick={() => createCustomer(email, name)}>Register</Button>
             </Box>
         </MainLayout>
     );

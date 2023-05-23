@@ -1,6 +1,9 @@
 const {PrismaClient} = require('@prisma/client');
 const prisma = new PrismaClient();
 const joi = require('joi');
+const {sendEmail} = require("../../services/emailService");
+const {getCustomer} = require("../customer/customer");
+const emails = require("../../global/emails");
 
 function getCars(req, res) {
     prisma.car.findMany().then((cars) => {
@@ -72,7 +75,8 @@ function postCar(req, res) {
     });
 }
 
-function putCar(req, res) {
+// Currently used for buying and selling cars
+async function putCar(req, res) {
     const schema = joi.object({
         make: joi.string().required(),
         model: joi.string().required(),
@@ -84,7 +88,8 @@ function putCar(req, res) {
         description: joi.string().required(),
         image: joi.string().allow(null),
         creator_id: joi.number().required(),
-        sold: joi.boolean().required()
+        sold: joi.boolean().required(),
+        invoker_id: joi.number()
     });
 
     const {error, value} = schema.validate(req.body);
@@ -92,6 +97,7 @@ function putCar(req, res) {
         res.status(400).send(error.details[0].message);
         return;
     }
+
 
     prisma.car.update({
         where: {
@@ -113,6 +119,21 @@ function putCar(req, res) {
     }).then((car) => {
         res.send(car);
     });
+    if ((value.creator_id !== value.invoker_id) && value.sold === true) {
+        const buyer_email = await prisma.customer.findUnique({
+            where: {
+                id: value.invoker_id
+            }
+        });
+        const seller_email = await prisma.customer.findUnique({
+            where: {
+                id: value.creator_id
+            }
+        });
+
+        sendEmail(buyer_email.email, "Thank you for your purchase", "", emails.NEW_ORDER)
+        sendEmail(seller_email.email, "Someone bought your car", "", emails.NEW_SELL)
+    }
 }
 
 function deleteCar(req, res) {

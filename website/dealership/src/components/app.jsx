@@ -17,7 +17,7 @@ export default function App() {
 	const [cars, setCars] = useState([]);
 
 	const handleSubmit = (car) => {
-		sendCar(car);
+		sendCar(car, "POST");
 	};
 
 	return (

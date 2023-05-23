@@ -11,6 +11,7 @@ export default class Car {
 		this.vin = vin;
 		this.year = year;
 		this.creator_id = creator_id;
+        this.sold = false;
 	}
 
 	getId() {

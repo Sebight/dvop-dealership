@@ -13,6 +13,7 @@ export default function Developers() {
 
 
     function genToken() {
+        console.log("GEN");
         postDeveloper(name, email, (data) => {
             setToken(data);
             setTokenReceived(true);
@@ -30,12 +31,12 @@ export default function Developers() {
                     flexWrap: 'wrap',
                 }}
             >
-              <Typography variant="h1">Developers login</Typography>
-              <form onSubmit={() => genToken}>
-                <Input sx={{marginTop:'10%'}} required placeholder="e-mail" variant="soft" onChange={(e) => setEmail(e.target.value)}/>
-                <Input sx={{marginTop:'10%'}} required placeholder="name" variant="soft" onChange={(e) => setName(e.target.value)}/>
-                <Button sx={{marginTop:'10%'}} disabled={tokenReceived}>Register & generate token</Button>
-              </form>
+                <Typography variant="h1">Developers login</Typography>
+                <Input sx={{marginTop: '10%'}} required placeholder="e-mail" variant="soft"
+                       onChange={(e) => setEmail(e.target.value)}/>
+                <Input sx={{marginTop: '10%'}} required placeholder="name" variant="soft"
+                       onChange={(e) => setName(e.target.value)}/>
+                <Button sx={{marginTop: '10%'}} onClick={() => genToken()} disabled={tokenReceived}>Register & generate token</Button>
                 {tokenReceived && <Typography variant="body1">token: {token}</Typography>}
             </Box>
         </MainLayout>

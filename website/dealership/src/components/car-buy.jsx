@@ -11,13 +11,11 @@ export default function CarBuy(props = {}) {
 
 	useEffect(() => {
 		getCar(carId, setCar);
-		console.log(car)
 	}, []);
 
 	function handleClick() {
 		//Set car sold to true
 		car['sold'] = true;
-		console.log(car)
 		sendCar(car, 'PUT');
 	}
 

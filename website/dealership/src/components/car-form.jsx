@@ -34,7 +34,8 @@ export default function CarForm({ onSubmit }) {
 			formValues.price,
 			formValues.vin,
 			formValues.year,
-			formValues.creator_id
+			formValues.creator_id,
+            false
 		);
 		// Call the onSubmit function with the new car object
 		onSubmit(car);
@@ -60,7 +61,7 @@ export default function CarForm({ onSubmit }) {
 	};
 
 	const inputFields = Object.getOwnPropertyNames(new Car()).map((prop) => (
-		prop !== 'creator_id' && prop !== 'id' &&
+		prop !== 'creator_id' && prop !== 'sold' && prop !== 'id' &&
 		<FormControl>
 			<FormLabel>{prop.toUpperCase()}</FormLabel>
 			<Input

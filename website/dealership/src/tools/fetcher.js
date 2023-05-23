@@ -20,7 +20,8 @@ export function sendCar(car, method) {
             vin: car.vin,
             year: car.year,
             creator_id: user_id,
-            sold: car.sold
+            sold: car.sold,
+            invoker_id: readLocalStorage("user_id")
         })
     }).then((response) => {
         return response.json();

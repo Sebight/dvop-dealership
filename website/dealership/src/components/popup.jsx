@@ -48,16 +48,15 @@ export default function Popup({open = true, onClosed = () => {
                 <Box>
                     <Typography fontSize={"2.5rem"} fontWeight="md">{props.make} {props.model}</Typography>
                     <Typography>{props.description}</Typography>
-                    <Typography><b>Rok výroby</b>: {props.year}</Typography>
-                    <Typography><b>Cena</b>: {formatPrice(props.price)}</Typography>
-                    <Typography><b>Stav
-                        tachometru</b>: {props.mileage != undefined ? props.mileage : "{unknown}"} km</Typography>
+                    <Typography><b>Year</b>: {props.year}</Typography>
+                    <Typography><b>Price</b>: {formatPrice(props.price)}</Typography>
+                    <Typography><b>Driven</b>: {props.mileage != undefined ? props.mileage : "{unknown}"} km</Typography>
                     <Typography fontWeight="md" textColor="success.plainColor" mb={0.5}>
                         <b>VIN</b>: {props.vin}
                     </Typography>
                     <Button onClick={() => {
                         window.location.href = "/buy/" + props.id;
-                    }}>Koupit</Button>
+                    }}>Buy</Button>
                 </Box>
             </Sheet>
         </Modal>
