@@ -50,6 +50,7 @@ router.get('/', (req, res) => res.status(404).send('404'));
  *               price: 100000
  *               description: "This is a car"
  *               image: ""
+ *               sold: false
  */
 router.get('/car', carController.getCars);
 /**
@@ -90,6 +91,7 @@ router.get('/car', carController.getCars);
  *               price: 100000
  *               description: "This is a car"
  *               image: ""
+ *               sold: false
  */
 router.post('/car', carController.postCar);
 /**
@@ -121,7 +123,8 @@ router.post('/car', carController.postCar);
  *                 mileage: 1000
  *                 price: 100000
  *                 description: "This is a car"
- *                 image: ""
+ *                 image: "",
+ *                 sold: true
  *         404:
  *           description: Car not found with the specified ID
  */
@@ -155,6 +158,7 @@ router.get('/car/:id', carController.getCar);
  *               price: 100000
  *               description: "This is a car"
  *               image: ""
+ *               sold: true
  *       responses:
  *         200:
  *           description: Updated car object
@@ -171,6 +175,7 @@ router.get('/car/:id', carController.getCar);
  *                 price: 100000
  *                 description: "This is a car"
  *                 image: ""
+ *                 sold: true
  *         404:
  *           description: Car not found with the specified ID
  */
