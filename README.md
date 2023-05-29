@@ -15,3 +15,7 @@ Po tom, co jsme si vybrali téma práce, přišlo na řadu výběr technologií,
 ![image](https://github.com/Sebight/dvop-dealership/assets/59232422/396091dd-2f5e-4f48-97e4-087113047fcb)
 ![image](https://github.com/Sebight/dvop-dealership/assets/59232422/240e8a51-abcd-4d79-92d5-7ec40e3a215a)
 ![image](https://github.com/Sebight/dvop-dealership/assets/59232422/45059b04-8ce2-4b01-9e00-68bf1c8d4b22)
+<img width="878" alt="image" src="https://github.com/Sebight/dvop-dealership/assets/59232422/2ec13d50-34f5-4152-823c-107750d15725">
+![image](https://github.com/Sebight/dvop-dealership/assets/59232422/303327b4-998c-4c98-9612-27f4a8f06277)
+![image](https://github.com/Sebight/dvop-dealership/assets/59232422/30dfaf64-a4ff-4014-b1ef-61e60bb14b76)
+
